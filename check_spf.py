@@ -2007,28 +2007,7 @@ if __name__ == '__main__':
           print('OK')
           sys.exit(0)
         else:
-          print('CRITICAL: Issuewith SPF record')
+          print('CRITICAL: Issue with SPF record')
           sys.exit(2)
-
-        if r[0] == 'none':
-          print('guessed:',q.best_guess(),q.mechanism)
-        if q.perm_error and q.perm_error.ext:
-            print('lax:',q.perm_error.ext)
-        if q.iplist:
-            for ip in ipaddress.collapse_addresses(q.iplist):
-                print(ip)
-    elif len(argv) == 4:
-        i, s, h = argv[1:]
-        q = query(i=i, s=s, h=h, receiver=socket.gethostname(),
-            strict=False, verbose=verbose)
-        r = q.check(argv[0])
-        print('result:',r,q.mechanism)
-        if r[0] == 'none':
-          print('guessed:',q.best_guess(),q.mechanism)
-        if q.perm_error and q.perm_error.ext:
-            print('lax:',q.perm_error.ext)
-        if q.iplist:
-            for ip in ipaddress.collapse_addresses(q.iplist):
-                print(ip)
     else:
         print(USAGE)
